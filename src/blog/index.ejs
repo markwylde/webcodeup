@@ -2,13 +2,15 @@
 <%- await include('./components/header.html', {active: 'blog'}) -%>
 
 <main>
-  <h1>Blog</h1>
-  <p>Here are the latest blog entries.</p>
+  <article>
+    <h1>Blog</h1>
+    <p>Here are the latest blog entries.</p>
 
-  <ul>
-  <% blogEntries.forEach(entry => { %>
-    <li><a href="blog/<%= entry.id %>"><%= entry.title %></a></li>
-  <% }) %>
+    <ul>
+    <% blogEntries.forEach(entry => { %>
+      <li><a href="blog/<%= entry.id %>"><%= entry.title %></a></li>
+    <% }) %>
+  </article>
 </main>
 
 <%- await include('./components/footer.html') -%>

@@ -7,19 +7,11 @@
   box-sizing: border-box;
 }
 
-ul {
-  margin: 0;
-}
-
 code {
   background-color: rgb(241, 241, 241);
   color: var(--coloured-background);
   border-radius: 10px;
   padding: 3px 10px;
-}
-
-pre {
-  margin-top: -10px;
 }
 
 pre code.language-javascript {
@@ -65,15 +57,10 @@ main {
 
 h1 {
   font-size: 1.8rem;
-  margin: 10px 0 30px 0;
 }
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 0 0 30px 0;
-}
-p {
-  margin: 0 0 30px 0;
 }
 
 header {
