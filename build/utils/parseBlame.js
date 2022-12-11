@@ -11,7 +11,7 @@ const parseBlame = (blame) => {
   const lineData = {};
 
   lines.forEach(line => {
-    if (line[0] == '\t') {
+    if (line[0] === '\t') {
       lineData[currentLineNumber].code = line.substr(1);
       settingCommitData = false;
       currentCommitHash = '';
@@ -24,7 +24,7 @@ const parseBlame = (blame) => {
           ...parsedCommitLine
         };
       } else {
-        if (arrLine[0].length == 40) {
+        if (arrLine[0].length === 40) {
           currentCommitHash = arrLine[0];
           currentLineNumber = arrLine[2];
 

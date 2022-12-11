@@ -12,7 +12,7 @@ function gitBlameLastChange (filePath) {
     output = execSync(`git blame --date=iso -p "${filePath}"`, { encoding: 'utf8' });
   } catch (error) {
     console.log(`Could not git blame ${filePath}`);
-    return null
+    return null;
   }
 
   const result = getLastBlame(output);
