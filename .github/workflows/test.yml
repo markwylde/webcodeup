@@ -1,9 +1,9 @@
-name: Deploy
+name: Test
 
 on: [push]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:

@@ -24,11 +24,6 @@ jobs:
           npm install
           npm run build
 
-      - id: npmjsVersion
-        name: Extract version from package.json
-        run: |
-          echo "npmjsVersion=`awk '/version/{gsub(/("|",)/,"",$2);print $2};' package.json`" >> $GITHUB_OUTPUT
-
       - name: Sync production
         run: |
           node .github/workflows/deployConfig.js
