@@ -81,7 +81,12 @@ header {
   line-height: 2rem;
 }
 
+header img {
+  width: 24px;
+}
+
 header a {
+  text-decoration: none;
   color: white;
 }
 

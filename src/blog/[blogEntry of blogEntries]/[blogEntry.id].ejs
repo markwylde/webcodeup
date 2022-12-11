@@ -2,11 +2,13 @@
 <%- await include('./components/header.html', {active: 'blog'}) -%>
 
 <main>
-  <em>
-    Last edited on <%= formatDate(blogEntry.lastUpdated) %> by <%= blogEntry.lastUpdatedBy.author %>
-  </em>
   <h1><%= blogEntry.title %></h1>
   <%- blogEntry.content %>
+
+  <em>
+    Last edited on <%= formatDate(blogEntry.lastUpdated) %> by <%= blogEntry.lastUpdatedBy.author %>
+    <p><a href="https://github.com/markwylde/webcodeup.com/blob/master/content/blog/<%- blogEntry.id %>">Edit this page on GitHub</a></p>
+  </em>
 </main>
 
 <%- await include('./components/footer.html') -%>

@@ -38,7 +38,7 @@
     left: 0;
     width: 100%;
     z-index: -1;
-    animation: growDown 300ms ease-in-out forwards;
+    animation: growDown 100ms ease-in-out forwards;
     transform-origin: top center;
   }
   .dropdownMenu li {
