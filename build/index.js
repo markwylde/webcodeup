@@ -9,12 +9,12 @@ import gitBlameLastChange from './utils/gitBlameLastChange.js';
 import hljs from 'highlight.js';
 
 marked.setOptions({
-  highlight: function(code, lang) {
-    return hljs.highlight(lang, code).value;
+  highlight: function (code, lang) {
+    return hljs.highlight(code, { language: lang }).value;
   }
 });
 
-function formatDate(date) {
+function formatDate (date) {
   const isoString = date.toISOString();
 
   const year = isoString.split('-')[0];
@@ -29,13 +29,13 @@ function formatDate(date) {
   return formattedDate;
 }
 
-async function getDateLastModified(filePath) {
+async function getDateLastModified (filePath) {
   const stats = await fs.stat(filePath);
   const lastModified = new Date(stats.mtime);
   return lastModified;
 }
 
-function extractMetadata(content) {
+function extractMetadata (content) {
   const metadataRegex = /^---\n(.*)\n---\n/s;
   const metadataMatch = metadataRegex.exec(content);
 
@@ -58,8 +58,7 @@ function extractMetadata(content) {
   }
 }
 
-
-function clearComments(content) {
+function clearComments (content) {
   const commentRegex = /^---\n(.*)\n---\n/s;
   const commentMatch = commentRegex.exec(content);
 
@@ -83,7 +82,7 @@ async function build () {
           content: marked.parse(clearComments(content)),
           lastUpdated: gitBlameLastChange(entry),
           ...extractMetadata(content)
-        }
+        };
       })
   );
 

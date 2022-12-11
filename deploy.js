@@ -8,8 +8,8 @@ const config = {
     password: process.env.DEPLOY_FTP_PASSWORD,
     source: './dist',
     destination: '',
-    clearDestination: true,
+    clearDestination: true
   }]
-}
+};
 
 ftpsync(config);
