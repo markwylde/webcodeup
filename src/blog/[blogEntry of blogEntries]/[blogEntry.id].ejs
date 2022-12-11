@@ -1,0 +1,11 @@
+<%- await include('./components/head.html') -%>
+<%- await include('./components/header.html', {active: 'blog'}) -%>
+
+<main>
+  <em>Last edited on <%= formatDate(blogEntry.lastUpdated) %>
+  <h1><%= blogEntry.title %></h1>
+  <%- blogEntry.content %>
+</main>
+
+<%- await include('./components/footer.html') -%>
+<%- await include('./components/foot.html') -%>

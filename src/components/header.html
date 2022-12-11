@@ -13,7 +13,7 @@
     <div class="container">
       <ul>
         <li <%= locals.active === 'home' ? 'active' : '' %>><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
+        <li <%= locals.active === 'blog' ? 'active' : '' %>><a href="/blog">Blog</a></li>
       </ul>
     </div>
   </div>

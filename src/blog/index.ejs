@@ -1,0 +1,15 @@
+<%- await include('./components/head.html') -%>
+<%- await include('./components/header.html', {active: 'blog'}) -%>
+
+<main>
+  <h1>Blog</h1>
+  <p>Here are the latest blog entries.</p>
+
+  <ul>
+  <% blogEntries.forEach(entry => { %>
+    <li><a href="blog/<%= entry.id %>"><%= entry.title %></a></li>
+  <% }) %>
+</main>
+
+<%- await include('./components/footer.html') -%>
+<%- await include('./components/foot.html') -%>
