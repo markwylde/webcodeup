@@ -1,0 +1,32 @@
+footer {
+  background-color: var(--dark-background);
+  margin: 0;
+  color: white;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  display: flex;
+}
+
+footer > .container {
+  flex-direction: column;
+}
+
+footer > .container > div:first-child {
+  flex-grow: 1;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer a {
+  color: white;
+}
+
+@media (min-width:801px) {
+  footer > .container {
+    flex-direction: row;
+  }
+}

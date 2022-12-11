@@ -1,0 +1,28 @@
+<header>
+  <div class="container">
+    <div>
+      <div>
+        <button id="dropdownButton" class="small-only">☰</button>
+        WebCodeUp
+      </div>
+    </div>
+  </div>
+</header>
+<div class="menu dropdown">
+  <div class="dropdownMenu">
+    <div class="container">
+      <ul>
+        <li <%= locals.active === 'home' ? 'active' : '' %>><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const dropdownMenu = document.querySelector('.dropdown');
+  const dropdownButton = document.querySelector('#dropdownButton');
+  dropdownButton.addEventListener('click', (event) => {
+    dropdownMenu.classList.toggle('dropdown-open');
+  });
+</script>

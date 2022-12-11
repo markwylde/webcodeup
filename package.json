@@ -1,0 +1,24 @@
+{
+  "name": "webcodeup",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "The code and content for webcodeup.com",
+  "main": "index.js",
+  "scripts": {
+    "start": "statictron -w -o dist --loader ejs --loader css src & servatron -p 8080 -d dist",
+    "build": "statictron -o dist --loader ejs --loader css src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["blog", "static", "javascript", "nodejs", "web", "code"],
+  "author": {
+    "name": "Mark Wylde",
+    "email": "me@markwylde.com",
+    "url": "https://github.com/markwylde"
+  },
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "@markwylde/ftp-deploy": "^2.0.2",
+    "servatron": "^2.4.2",
+    "statictron": "^3.0.4"
+  }
+}
