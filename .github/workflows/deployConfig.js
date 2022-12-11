@@ -27,7 +27,7 @@ async function deploy () {
       hostname: process.env.FTP_HOSTNAME,
       username: process.env.FTP_USERNAME,
       password: process.env.FTP_PASSWORD,
-      source: './public',
+      source: './dist',
       destination: '',
       clearDestination: true
     }]
