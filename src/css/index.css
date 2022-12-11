@@ -18,6 +18,10 @@ code {
   padding: 3px 10px;
 }
 
+pre {
+  margin-top: -10px;
+}
+
 pre code.language-javascript {
   display: block;
   background-color: rgb(40, 40, 40);
