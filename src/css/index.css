@@ -1,9 +1,30 @@
 @import "./dropdown.css";
 @import "./footer.css";
 @import "./fonts.css";
+@import "highlight.js/styles/github-dark-dimmed.css";
 
 * {
   box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+}
+
+code {
+  background-color: rgb(241, 241, 241);
+  color: var(--coloured-background);
+  border-radius: 10px;
+  padding: 3px 10px;
+}
+
+pre code.language-javascript {
+  display: block;
+  background-color: rgb(40, 40, 40);
+  color: white;
+  padding: 10px;
+  overflow: auto;
+  line-height: 1.5rem;
 }
 
 html,

@@ -5,16 +5,14 @@ import chokidar from 'chokidar';
 import debounce from 'debounce';
 import { globby } from 'globby';
 import { marked } from 'marked';
+import gitBlameLastChange from './utils/gitBlameLastChange.js';
+import hljs from 'highlight.js';
 
-import { execSync } from 'child_process';
-
-function gitBlameLastChange(filePath) {
-  const output = execSync(`git blame "${filePath}"`, { encoding: 'utf8' });
-  const lastLine = output.split('\n').slice(-2)[0];
-  const match = lastLine.match(/^\w+\s\((.+?)\s<(.+?)>/);
-  const [, name, email] = match;
-  return { name, email };
-}
+marked.setOptions({
+  highlight: function(code, lang) {
+    return hljs.highlight(lang, code).value;
+  }
+});
 
 function formatDate(date) {
   const isoString = date.toISOString();
@@ -90,7 +88,6 @@ async function build () {
       })
   );
 
-  console.log(blogEntries);
   return statictron({
     source: './src',
     output: './dist',

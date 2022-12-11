@@ -2,7 +2,9 @@
 <%- await include('./components/header.html', {active: 'blog'}) -%>
 
 <main>
-  <em>Last edited on <%= formatDate(blogEntry.lastUpdated) %>
+  <em>
+    Last edited on <%= formatDate(blogEntry.lastUpdated) %> by <%= blogEntry.lastUpdatedBy.author %>
+  </em>
   <h1><%= blogEntry.title %></h1>
   <%- blogEntry.content %>
 </main>

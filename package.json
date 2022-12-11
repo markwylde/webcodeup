@@ -5,8 +5,8 @@
   "description": "The code and content for webcodeup.com",
   "main": "index.js",
   "scripts": {
-    "start": "node build.js -w & servatron -p 8080 -d dist",
-    "build": "node build.js",
+    "start": "node build -w & servatron -p 8080 -d dist",
+    "build": "node build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -25,7 +25,9 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "@markwylde/ftp-deploy": "^2.0.2",
+    "blamejs": "^1.0.0",
     "globby": "^13.1.2",
+    "highlight.js": "^11.7.0",
     "marked": "^4.2.4",
     "servatron": "^2.4.2",
     "statictron": "^3.0.4"
