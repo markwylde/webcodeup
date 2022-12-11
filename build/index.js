@@ -81,8 +81,7 @@ async function build () {
         return {
           id: entry.slice('./content/blog/'.length),
           content: marked.parse(clearComments(content)),
-          lastUpdated: await getDateLastModified(entry),
-          lastUpdatedBy: gitBlameLastChange(entry),
+          lastUpdated: gitBlameLastChange(entry),
           ...extractMetadata(content)
         }
       })

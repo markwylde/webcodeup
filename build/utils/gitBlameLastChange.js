@@ -10,9 +10,13 @@ function getLastBlame (output) {
 }
 
 function gitBlameLastChange(filePath) {
-  const output = execSync(`git blame -p "${filePath}"`, { encoding: 'utf8' });
+  const output = execSync(`git blame --date=iso -p "${filePath}"`, { encoding: 'utf8' });
 
-  return getLastBlame(output);
+  const result = getLastBlame(output);
+  result.authorTime = new Date(result.authorTime * 1000);
+  result.committerTime = new Date(result.committerTime * 1000);
+
+  return result;
 }
 
 export default gitBlameLastChange;
