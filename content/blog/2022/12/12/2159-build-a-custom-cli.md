@@ -90,6 +90,12 @@ Now that we have our commands defined, we can execute them.
 We can do this by checking the first item in the `args` array to see if it is a valid command. If it is, we can take the remaining items in the array and pass them to the command function.
 
 ```javascript
+const commands = {
+  hello,
+  eval,
+  help
+};
+
 const commandName = args[0];
 
 if (commandName in commands) {
