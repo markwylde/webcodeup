@@ -2,7 +2,6 @@
 title: An introduction to the JavaScript event loop
 ---
 
-
 Node.js is an event-driven JavaScript runtime that allows you to build scalable and efficient server-side applications. One of the key features that makes this possible is the event loop.
 
 In this article, we'll take a closer look at the event loop and how it works in Node.js. We'll also explore some of the key concepts and terminology that are important to understand when working with the event loop.
