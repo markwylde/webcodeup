@@ -2,7 +2,7 @@
 title: Build a custom REPL using NodeJS
 ---
 
-REPLs have become a really useful way to administer or develop modern tech toolsets. For example, they allow us to query databases, take backups or evaluate code on the fly. With NodeJS, you can build a custom REPL, and this article will attempt to walk you through the basics.
+REPLs have become a really useful way to administer or develop modern tech. For example, they allow us to query databases, insert test users or evaluate code on the fly. With NodeJS, you can build a custom REPL, and this article will attempt to walk you through the basics.
 
 First let's create a brand new project using npm.
 
