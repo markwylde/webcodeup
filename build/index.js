@@ -13,7 +13,7 @@ import clearCommentsFromMarkdown from './utils/clearCommentsFromMarkdown.js';
 
 marked.setOptions({
   highlight: function (code, lang) {
-    return hljs.highlight(code, { language: lang }).value;
+    return hljs.highlight(code, { language: lang }).value.replace(/\n/g, '<br />');
   }
 });
 
@@ -53,7 +53,8 @@ if (['-w', '--watch'].includes(process.argv[2]?.trim())) {
   const debouncedBuild = debounce(build, 300);
   async function watch () {
     chokidar.watch([
-      path.resolve('./src')
+      path.resolve('./src'),
+      path.resolve('./content')
     ]).on('all', debouncedBuild);
   }
   watch();
