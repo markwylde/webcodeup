@@ -1,12 +1,19 @@
 import test from 'basictap';
 import clearCommentsFromMarkdown from '../utils/clearCommentsFromMarkdown.js';
 
+function doesNotMatch(str, pattern, message) {
+  const match = str.match(pattern);
+  if (match !== null) {
+    throw new Error(message);
+  }
+}
+
 test('clearCommentsFromMarkdown removes comment blocks', t => {
   const content = '---\nThis is a comment\n---\nThis is not a comment';
   const clearedContent = clearCommentsFromMarkdown(content);
 
   t.notEqual(content, clearedContent, 'content should have changed');
-  t.doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
+  doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
 });
 
 test('clearCommentsFromMarkdown does not modify content without comment blocks', t => {
@@ -20,8 +27,8 @@ test('clearCommentsFromMarkdown works with multiline comments', t => {
   const content = '---\nThis is a comment\nthat spans multiple lines\n---\nThis is not a comment';
   const clearedContent = clearCommentsFromMarkdown(content);
 
-  t.notEqual(content, clearedContent, 'content should have changed'); //
-  t.doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
+  t.notEqual(content, clearedContent, 'content should have changed');
+  doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
 });
 
 test('clearCommentsFromMarkdown works with empty comments', t => {
@@ -29,7 +36,7 @@ test('clearCommentsFromMarkdown works with empty comments', t => {
   const clearedContent = clearCommentsFromMarkdown(content);
 
   t.notEqual(content, clearedContent, 'content should have changed');
-  t.doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
+  doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
 });
 
 test('clearCommentsFromMarkdown works with comments at the beginning and end of the content', t => {
@@ -37,5 +44,5 @@ test('clearCommentsFromMarkdown works with comments at the beginning and end of 
   const clearedContent = clearCommentsFromMarkdown(content);
 
   t.notEqual(content, clearedContent, 'content should have changed');
-  t.doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
+  doesNotMatch(clearedContent, /^---\n.*\n---\n/s, 'cleared content should not contain comment blocks');
 });
