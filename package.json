@@ -25,12 +25,12 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "@markwylde/ftp-deploy": "^2.0.2",
-    "basictap": "^4.3.1",
+    "basictap": "^4.3.2",
     "globby": "^13.1.4",
     "highlight.js": "^11.7.0",
     "marked": "^4.3.0",
     "servatron": "^2.4.3",
     "statictron": "^3.0.4",
-    "yaml": "^2.2.1"
+    "yaml": "^2.2.2"
   }
 }
