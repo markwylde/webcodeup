@@ -30,9 +30,7 @@
     "marked": "^5.0.0",
     "servatron": "^2.4.3",
     "statictron": "^3.0.4",
+    "upload-to-bunny": "^1.0.4",
     "yaml": "^2.2.2"
-  },
-  "dependencies": {
-    "upload-to-bunny": "^1.0.4"
   }
 }

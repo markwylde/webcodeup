@@ -1,4 +1,4 @@
-import ftpDeploy from '@markwylde/ftp-deploy';
+import uploadToBunny from 'upload-to-bunny';
 
 async function purgeCache (domain) {
   const response = await fetch(`https://europe-west2-personal-projects-341716.cloudfunctions.net/purge-bunny?domain=${domain}`, {
@@ -18,20 +18,13 @@ async function purgeCache (domain) {
 }
 
 async function deploy () {
-  await ftpDeploy({
-    verbose: true,
-
-    log: console.log,
-
-    tasks: [{
-      hostname: process.env.FTP_HOSTNAME,
-      username: process.env.FTP_USERNAME,
-      password: process.env.FTP_PASSWORD,
-      source: './dist',
-      destination: '',
-      clearDestination: true
-    }]
+  uploadToBunny('./dist', '', {
+    accessKey: process.env.FTP_PASSWORD,
+    cleanDestination: true,
+    maxConcurrentUploads: 10,
+    storageZoneName: process.env.FTP_USERNAME
   });
+
 
   await purgeCache('webcodeup.com');
 }
