@@ -24,8 +24,10 @@ async function build () {
       .map(async entry => {
         const content = await fs.readFile(entry, 'utf8');
 
+        const id = entry.slice('./content/blog/'.length);
+
         return {
-          id: entry.slice('./content/blog/'.length),
+          id: id.slice(0, -3),
           content: marked.parse(clearCommentsFromMarkdown(content)),
           lastUpdated: gitBlameLastChange(entry),
           ...extractMetadataFromMarkdown(content)
