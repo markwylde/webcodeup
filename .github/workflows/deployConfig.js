@@ -18,7 +18,7 @@ async function purgeCache (domain) {
 }
 
 async function deploy () {
-  uploadToBunny('./dist', '', {
+  await uploadToBunny('./dist', '', {
     accessKey: process.env.FTP_PASSWORD,
     cleanDestination: true,
     maxConcurrentUploads: 10,
