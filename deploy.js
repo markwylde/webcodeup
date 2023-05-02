@@ -1,15 +1,8 @@
-import ftpsync from '@markwylde/ftp-deploy';
+import uploadToBunny from 'upload-to-bunny';
 
-const config = {
-  verbose: true,
-  tasks: [{
-    hostname: process.env.DEPLOY_FTP_HOSTNAME,
-    username: process.env.DEPLOY_FTP_USERNAME,
-    password: process.env.DEPLOY_FTP_PASSWORD,
-    source: './dist',
-    destination: '',
-    clearDestination: true
-  }]
-};
-
-ftpsync(config);
+uploadToBunny('./dist', '', {
+  accessKey: process.env.DEPLOY_FTP_PASSWORD,
+  cleanDestination: true,
+  maxConcurrentUploads: 10,
+  storageZoneName: process.env.DEPLOY_FTP_USERNAME
+});
