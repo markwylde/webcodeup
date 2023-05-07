@@ -24,13 +24,13 @@
 }
 @font-face{
   font-family:"Open Sans";
-  src:url(../fonts/Semibold/OpenSans-Semibold.woff2) format("woff2"),url(../fonts/Semibold/OpenSans-Semibold.woff) format("woff");
+  src:url(../fonts/SemiBold/OpenSans-SemiBold.woff2) format("woff2"),url(../fonts/SemiBold/OpenSans-SemiBold.woff) format("woff");
   font-weight:600;
   font-style:normal
 }
 @font-face{
   font-family:"Open Sans";
-  src:url(../fonts/SemiboldItalic/OpenSans-SemiboldItalic.woff2) format("woff2"),url(../fonts/SemiboldItalic/OpenSans-SemiboldItalic.woff) format("woff");
+  src:url(../fonts/SemiBoldItalic/OpenSans-SemiBoldItalic.woff2) format("woff2"),url(../fonts/SemiBoldItalic/OpenSans-SemiBoldItalic.woff) format("woff");
   font-weight:600;
   font-style:italic
 }
