@@ -196,9 +196,7 @@ While external mocking offers significant benefits, it's crucial to recognize po
 
 2. **Slower Tests**: Tests interacting with a server can slow down due to additional latency, leading to longer testing times, especially in large-scale applications where thousands of tests might run.
 
-3. **Risk of Over Mocking**: When setting up a mock server, you might mock more than necessary, almost creating a parallel development
-
- effort. Keeping the mock server's behavior aligned with the actual server's behavior could become a daunting task as your application grows.
+3. **Risk of Over Mocking**: When setting up a mock server, you might mock more than necessary, almost creating a parallel development effort. Keeping the mock server's behavior aligned with the actual server's behavior could become a daunting task as your application grows.
 
 4. **Increased Surface for Errors**: Building and maintaining a mock server can introduce errors. If a discrepancy arises between the behaviors of the real server and the test server, tests might pass or fail incorrectly.
 
