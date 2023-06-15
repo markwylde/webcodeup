@@ -17,6 +17,20 @@ marked.setOptions({
   }
 });
 
+const renderer = {
+  heading(text, level) {
+    const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+    return `
+      <h${level}>
+        <a name="${escapedText}" class="anchor" href="#${escapedText}">#</a>
+        ${text}
+      </h${level}>`;
+  }
+};
+
+marked.use({ renderer });
+
 async function build () {
   const blogFiles = await globby('./content/blog/**/*.md');
   const blogEntries = await Promise.all(

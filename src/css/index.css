@@ -51,6 +51,12 @@ main {
   flex-grow: 1;
 }
 
+.anchor,
+.anchor:visited {
+  text-decoration: none;
+  color: gray;
+}
+
 .callout {
   background-color: rgb(167, 20, 20);
 }
