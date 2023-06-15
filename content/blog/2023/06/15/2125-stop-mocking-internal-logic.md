@@ -2,17 +2,17 @@
 title: Stop Mocking Internal; Start Mocking Your External
 ---
 
-Modern software development practices have underscored the importance of testing as a cornerstone in the development process. As such, there has been a shift in emphasis from purely unit tests towards more integrated testing methods. A popular tool that emerged in sync with this trend is the React Testing Library (RTL), which provides a more realistic way to test React applications by focusing on their behaviour, not their implementation.
+Modern software development practices underscore testing as a cornerstone of the development process. Consequently, there's been a shift from purely unit tests toward more integrated testing methods. The React Testing Library (RTL), which focuses on application behavior rather than implementation, has emerged as a popular tool in line with this trend.
 
-Traditionally, when testing web applications, we often resort to the practice of mocking internal objects and functions. For instance, we might mock the application's store, `window.fetch` and other dependencies within our app. While this method might be handy, it often results in brittle tests that fail to reflect how the application interacts with the outside world.
+Traditionally, when testing web applications, we often resort to mocking internal objects and functions like the application's store, `window.fetch`, and other dependencies. While convenient, this approach can lead to brittle tests that do not reflect how the application interacts with the outside world.
 
-In this article, we propose a novel approach: stop mocking internal and start mocking your external. In other words, instead of mocking the internals of your application, you should set up a small test server that simulates your application's real-world interactions. 
+In this article, we propose an alternative: stop mocking internals and start mocking externals. Instead of focusing on the inner workings of your application, set up a small test server to simulate your application's real-world interactions.
 
 ## What is mocking internal logic?
 
 Imagine we have a login form component that `POST`'s to an endpoint `/sessions` with a JSON body of `{ username, password }`.
 
-To implement a test for a login form, we would utilize Jest along with React Testing Library (RTL). Below is an example test case where we're checking for an error message if a wrong username and password are entered.
+To test a login form, we would use Jest alongside the React Testing Library (RTL). Here's an example test case where we're checking for an error message if incorrect username and password are entered.
 
 ```javascript
 import React from 'react';
@@ -47,21 +47,21 @@ describe('LoginForm', () => {
 });
 ```
 
-In this example, we mock the `login` function from `auth.ts` to always reject, simulating a failed login attempt. We then render the `LoginForm`, enter incorrect username and password values, and click the submit button. We wait for the error message "Invalid username or password" to appear, validating that the application correctly handles incorrect login credentials. Finally, we reset the mock for further tests, ensuring isolation between tests.
+In this example, we mock the `login` function from `auth.ts` to always reject, simulating a failed login attempt. We then render the `LoginForm`, input incorrect credentials, and click the submit button. We wait for the error message "Invalid username or password" to appear, which validates the application's proper handling of incorrect login credentials. Finally, we reset the mock for subsequent tests, ensuring isolation between them.
 
 ## Why should we stop mocking internal?
 
-Mocking internals can lead to tests becoming brittle and tightly coupled to the implementation. This happens because when we mock internal objects or functions, we inherently presume the inner workings of a function or module. If we refactor or restructure the system's internal logic, the tests may fail despite the public interface and the functionality remaining the same. As a result, our tests can become more of a hindrance than a safety net.
+Mocking internals can result in tests becoming brittle and tightly coupled to implementation. This happens because when we mock internal objects or functions, we inherently assume the workings of a function or module. If we refactor or restructure the system's internal logic, the tests may fail despite the public interface and the functionality remaining the same. Consequently, our tests may hinder development more than they assist it.
 
-Moreover, internally mocked tests often fail to accurately simulate the real-world conditions in which the app operates. This can lead to misleading results as tests might pass despite the presence of bugs that would manifest under real conditions.
+Moreover, internally mocked tests often fail to accurately simulate the real-world conditions in which the app operates. This can lead to false positives, with tests passing despite the presence of bugs that would manifest under real conditions.
 
 ## Embrace External Mocking
 
-Instead of internally mocking everything, consider mocking the boundaries of your application, i.e., its external dependencies. By doing this, you're not making assumptions about your code's internals; instead, you're simulating the interactions between your code and the rest of the world.
+Instead of mocking everything internally, consider mocking the boundaries of your application, i.e., its external dependencies. By doing this, you're not making assumptions about your code's internals; instead, you're simulating the interactions between your code and the outside world.
 
-Setting up a small test server might initially seem like extra work, but it pays off by leading to more robust and meaningful tests. This server should simulate the same conditions that your application would face in the real world. For example, it might delay responses, deliver unexpected data, or fail to respond altogether, thereby ensuring that your application can handle all these scenarios.
+Setting up a small test server may initially seem like extra work, but it ultimately leads to more robust and meaningful tests. This server should simulate the same conditions your application would face in the real world. For example, it might delay responses, deliver unexpected data, or fail to respond altogether, thereby ensuring your application can handle all these scenarios.
 
-Let's start by creating a small mock server generator function. We'll use `http.createServer` to create a mock server that responds to specific routes. The server listens on a port assigned by the operating system, preventing potential conflicts with other tests or processes.
+Let's start by creating a small mock server generator function. We'll use `http.createServer` to create a mock server that responds to specific routes. The server listens on a port assigned by the operating system, avoiding potential conflicts with other tests or processes.
 
 ```javascript
 import http from 'http';
@@ -97,13 +97,13 @@ const server = createMockServer({
 server.close();
 ```
 
-In this example, `createMockServer` is a function that sets up a server specifically for testing. It receives a `routes` object as an argument, which it uses to define the behavior of the server based on the incoming requests' URLs and methods. This server stands in for the real API and allows tests to interact with it as if it were the real thing. Once the tests are done, we close the server to clean up our test environment. 
+In this example, `createMockServer` is a function that sets up a server specifically for testing. It receives a routes object as an argument, which it uses to define the server's behavior based on incoming request URLs and methods. This server stands in for the real API and allows tests to interact with it as if it were the actual backend. Once tests are completed, we close the server to clean up our test environment.
 
-By embracing this approach, you're effectively simulating the actual external interactions of your application, resulting in more robust and reliable tests.
+Embracing this approach effectively simulates your application's actual external interactions, resulting in more robust and reliable tests.
 
 ### The internal mocking approach
 
-Let's look back at our original internally mocked test. We used Jest to mock the `login` function to return a predefined response. This method involved creating assumptions about the internals of our codebase.
+In our original internally mocked test, we used Jest to mock the `login` function to return a predefined response, thus making assumptions about our codebase's internals.
 
 ```javascript
 jest.mock('../services/auth.ts', () => ({
@@ -117,7 +117,7 @@ In that example, we are mocking the `login` function to always reject, simulatin
 
 ### The external mocking approach
 
-Now, let's try the same with our proposed approach. This time, instead of mocking the `login` function, we will set up a mock server to simulate the real-world API interaction.
+Now, let's implement the same test using our proposed approach. Instead of mocking the `login` function, we will set up a mock server to simulate the actual API interaction.
 
 ```javascript
 import http from 'http';
@@ -170,34 +170,36 @@ describe('LoginForm', () => {
 
 External mocking brings multiple benefits to your testing strategy:
 
-1. **Realistic Environment**: Tests run in an environment that closely mirrors the production environment, leading to more meaningful and reliable results. It ensures that your application's interactions with the backend are tested under conditions that accurately simulate actual user experiences.
+1. **Realistic Environment**: Tests run in an environment that closely mirrors the production environment, resulting in more reliable results. This approach ensures that your application's interactions with the backend are tested under conditions that closely simulate actual user experiences.
 
-2. **Fewer False Positives**: By not making assumptions about your code's internal behavior, you're less likely to have tests that pass despite the presence of bugs. Instead, you are testing the actual outcomes, which helps identify potential bugs and discrepancies that might not surface with internal mocking.
+2. **Fewer False Positives**: Without making assumptions about your code's internal behavior, you're less likely to have tests that pass despite the presence of bugs. By testing the actual outcomes, you can better identify potential bugs and discrepancies that might be missed with internal mocking.
 
-3. **Better Coverage**: By testing against a server, you naturally cover more of your codebase with each test. This not only includes the API interactions themselves but also how your app handles different server responses and network conditions.
+3. **Better Coverage**: By testing against a server, you cover more of your codebase with each test. This includes not only the API interactions themselves, but also how your app handles various server responses and network conditions.
 
-4. **Flexibility**: With a dedicated server, you have full control over the conditions your tests face. You can simulate server errors, slow network conditions, different response formats, and other real-world situations to ensure your app handles them gracefully.
+4. **Flexibility**: A dedicated server gives you full control over the conditions your tests face. You can simulate server errors, slow network conditions, different response formats, and other real-world scenarios to ensure your app handles them well.
 
-5. **Test the Unexpected**: A significant benefit of external mocking is the ability to test unexpected or erroneous conditions. You can configure your server to return unusual status codes, malformed data, or unexpected delays to test your app's robustness and error handling capabilities.
+5. **Test the Unexpected**: External mocking allows you to test unexpected or erroneous conditions. You can configure your server to return unusual status codes, malformed data, or unexpected delays to test your app's resilience and error handling capabilities.
 
-6. **Isolation**: When using a mock server, your tests become independent of any external factors. They are not affected by downtime, changing data, or rate limits from your real servers or third-party APIs.
+6. **Isolation**: When using a mock server, your tests are independent of any external factors. They're not affected by real server or third-party API downtime, changing data, or rate limits.
 
-7. **Consistency**: A mock server provides a consistent environment for your tests. You can reliably reproduce the same conditions over multiple test runs, which is not always the case with real servers where data might change between requests.
+7. **Consistency**: A mock server provides a consistent environment for your tests. You can reliably reproduce the same conditions across multiple test runs, which isn't always the case with real servers where data can change between requests.
 
-8. **Safety**: Using a mock server eliminates the risk of accidentally performing destructive operations on your real server during tests. For instance, your tests might create, modify, or delete data, and doing so on your real server could have unwanted effects.
+8. **Safety**: Using a mock server eliminates the risk of accidentally performing destructive operations on your real server during tests. For instance, your tests might create, modify, or delete data, which, if done on your real server, could have undesired effects.
 
-These benefits make external mocking an essential tool for comprehensive, effective, and safe testing. However, we must remember that like any other approach, external mocking is not a silver bullet and does have its own challenges and potential drawbacks.
+These benefits make external mocking an essential tool for comprehensive, effective, and safe testing. However, like any approach, external mocking has its own challenges and potential drawbacks.
 
 ## Potential Downsides of External Mocking
 
-While external mocking has significant benefits, it's also crucial to recognize potential drawbacks and understand when it may not be the best choice. Let's delve into some of these challenges:
+While external mocking offers significant benefits, it's crucial to recognize potential drawbacks and understand when it may not be the best choice. Here are some challenges:
 
-1. **Increased Complexity**: Setting up an external mock server for your tests can be more complex and time-consuming than using simple internal mocks. You'll need to maintain a separate test server, and depending on your application's specifics, this could add substantial overhead to your testing process.
+1. **Increased Complexity**: Setting up an external mock server for your tests can be more complex and time-consuming than using simple internal mocks. Maintaining a separate test server could add substantial overhead to your testing process, depending on your application's specifics.
 
-2. **Slower Tests**: When tests interact with a server, they can become slower due to the additional latency. This can lead to longer testing times, particularly in large-scale applications where thousands of tests might be running.
+2. **Slower Tests**: Tests interacting with a server can slow down due to additional latency, leading to longer testing times, especially in large-scale applications where thousands of tests might run.
 
-3. **Risk of Over Mocking**: When setting up a mock server, you might end up mocking more than necessary, creating an almost parallel development effort. Maintaining the mock server's behavior aligned with the actual server's behavior could also become a daunting task as your application grows.
+3. **Risk of Over Mocking**: When setting up a mock server, you might mock more than necessary, almost creating a parallel development
 
-4. **Increased Surface for Errors**: The act of building and maintaining a mock server itself can introduce errors. If there's a discrepancy between the behaviors of the real server and the test server, tests might pass or fail incorrectly.
+ effort. Keeping the mock server's behavior aligned with the actual server's behavior could become a daunting task as your application grows.
 
-Despite these downsides, the external mocking approach is a robust and effective way to simulate real-world conditions for your application during testing. The key lies in striking the right balance. Use external mocking for high-level integration and end-to-end tests where real-world conditions are crucial, and complement it with unit tests for individual components, where internal mocking or no mocking at all might be more appropriate. Remember, the goal of testing is to build confidence in your software, and different types of tests can contribute to that goal in different ways.
+4. **Increased Surface for Errors**: Building and maintaining a mock server can introduce errors. If a discrepancy arises between the behaviors of the real server and the test server, tests might pass or fail incorrectly.
+
+Despite these downsides, the external mocking approach provides a robust and effective way to simulate real-world conditions for your application during testing. Striking the right balance is key. Use external mocking for high-level integration and end-to-end tests where real-world conditions are crucial, and complement it with unit tests for individual components where internal mocking, or no mocking at all, might be more appropriate. Remember, the goal of testing is to build confidence in your software, and different types of tests contribute to that goal in different ways.
