@@ -1,5 +1,5 @@
 ---
-title: Stop Mocking Internal; Start Mocking Your External
+title: Stop Mocking Internal Logic
 ---
 
 Modern software development practices underscore testing as a cornerstone of the development process. Consequently, there's been a shift from purely unit tests toward more integrated testing methods. The React Testing Library (RTL), which focuses on application behavior rather than implementation, has emerged as a popular tool in line with this trend.
