@@ -8,8 +8,13 @@
 
     <ul>
     <% blogEntries.forEach(entry => { %>
-      <li><a href="blog/<%= entry.id %>"><%= entry.title %></a></li>
+      <li>
+        <%= format(new Date(entry.created.authorTime), 'MMM, yyyy') %>
+        -
+        <a href="blog/<%= entry.id %>"><%= entry.title %></a>
+      </li>
     <% }) %>
+    </ul>
   </article>
 </main>
 

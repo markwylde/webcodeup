@@ -1,12 +1,14 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 import statictron from 'statictron';
+import { format } from 'date-fns';
 import chokidar from 'chokidar';
 import debounce from 'debounce';
 import { globby } from 'globby';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 import gitBlameLastChange from './utils/gitBlameLastChange.js';
+import gitBlameFirstChange from './utils/gitBlameFirstChange.js';
 import formatDate from './utils/formatDate.js';
 import extractMetadataFromMarkdown from './utils/extractMetadataFromMarkdown.js';
 import clearCommentsFromMarkdown from './utils/clearCommentsFromMarkdown.js';
@@ -44,10 +46,13 @@ async function build () {
           id: id.slice(0, -3),
           content: marked.parse(clearCommentsFromMarkdown(content)),
           lastUpdated: gitBlameLastChange(entry),
+          created: gitBlameFirstChange(entry),
           ...extractMetadataFromMarkdown(content)
         };
       })
   );
+
+  blogEntries.sort((a, b) => b.created.authorTime - a.created.authorTime);
 
   return statictron({
     source: './src',
@@ -57,6 +62,7 @@ async function build () {
       statictron.loaders.css
     ],
     scope: {
+      format,
       formatDate,
       blogEntries,
       fromMarkdown: marked.parse
