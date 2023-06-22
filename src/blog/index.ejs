@@ -9,7 +9,7 @@
     <ul>
     <% blogEntries.forEach(entry => { %>
       <li>
-        <%= format(new Date(entry.created.authorTime), 'MMM, yyyy') %>
+        <%= format(new Date(entry.created?.authorTime || Date.now()), 'MMM, yyyy') %>
         -
         <a href="blog/<%= entry.id %>"><%= entry.title %></a>
       </li>

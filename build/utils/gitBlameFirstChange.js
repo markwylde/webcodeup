@@ -12,7 +12,10 @@ function gitBlameFirstChange (filePath) {
     output = execSync(`git blame --date=iso -p "${filePath}"`, { encoding: 'utf8' });
   } catch (error) {
     console.log(`Could not git blame ${filePath}`);
-    return null;
+    return {
+      authorTime: new Date(),
+
+    };
   }
 
   const result = getFirstBlame(output);
