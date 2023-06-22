@@ -20,11 +20,11 @@ Certainly, the choices made by the creators of these big frameworks are not arbi
 
 And that's great. I wholeheartedly encourage developers to learn about these choices, to explore the reasons why these frameworks have been designed the way they have. Often, there is a lot to learn from them, and you might find some elements that you'd like to incorporate into your projects. But when the justifications for these choices become convoluted and heavy, so much so that the common advice is to simply adopt the entire framework and let it handle everything, that's where I start to raise an eyebrow.
 
-When we start hearing phrases like "it's too complicated for you to understand, just use XYZ", it can feel as though these big frameworks are less like useful tools and more like black boxes hiding a mess of complexities. Rather than enlightening us, they are obscuring our view of the inner workings of our applications.
+When we start hearing phrases like "it's too complicated for you to implement yourself, just use XYZ", it can feel as though these big frameworks are less like useful tools and more like black boxes hiding a mess of complexities. Rather than enlightening us, they are obscuring our view of the inner workings of our applications.
 
 But is the system really too complicated for us to understand? I'd argue not. In my opinion, we should strive to simplify the problem, to truly understand as much as we can about the system we are working with. Instead of accepting "it's too complicated for you" as an excuse, we should strive to demystify these complexities, to shine a light into these black boxes.
 
-## You probably shouldn't use Express
+## Express: It's Not You, It's Me
 
 Let's dive right into my main culprit for today: Express.js. This popular framework has become a staple for many Node.js developers, but it does come with some baggage. One of the most prominent issues is how it encourages mutation of the request object.
 
