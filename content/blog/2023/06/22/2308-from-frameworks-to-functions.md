@@ -75,7 +75,7 @@ By separating concerns—HTTP handling, session management, and request handling
 
 That's the beauty of the functional approach: it might seem a bit more daunting at first, but it gives you the freedom and flexibility to create code that is clean, modular, and easy to understand. Remember, code is read more often than it is written, so make sure it's as clear as possible for the next person who has to read it, even if that person is you in six months' time.
 
-## The Rout(ing) of all Evil?
+## What about routing?
 
 One of the common counter-arguments I hear is about routing. "But Express provides a great routing system!" Yes, it does. But let's follow Ron Swanson's philosophy here: "Never half-ass two things. Whole-ass one thing." If you need routing functionality, use a library dedicated to routing, like [`routemeup`](https://github.com/markwylde/routemeup) (shameless plug).
 
@@ -91,26 +91,44 @@ But if we look back to my `getSessionFromRequest` example. We have abstracted th
 
 # Both sides
 
-**Supporting Points:**
+## Supporting Points:
 
-1. **Simplicity:** First and foremost, the functional approach places a premium on simplicity and comprehension. The functional code is explicit, each line serving a defined purpose that developers can readily understand. This clarity can streamline both the development process and debugging, reducing the cognitive load required to work with the code.
+1. **Simplicity:**
 
-2. **Decoupling:** Adopting a functional approach fosters the decoupling of code, paving the way for more modular and maintainable applications. Components aren't bound to a specific framework or library, making it easier to swap them in and out as needed. This flexibility ensures the longevity and scalability of your codebase.
+   First and foremost, the functional approach places a premium on simplicity and comprehension. The functional code is explicit, each line serving a defined purpose that developers can readily understand. This clarity can streamline both the development process and debugging, reducing the cognitive load required to work with the code.
 
-3. **Control over Code:** By eschewing comprehensive frameworks, the functional approach grants developers full control over their code. This control is particularly beneficial in large or complex applications where the 'magic' of frameworks can obfuscate understanding and introduce unnecessary difficulties.
+2. **Decoupling:**
 
-4. **Performance:** Less reliance on hefty frameworks could potentially yield improved performance. With fewer lines of code to parse and fewer abstractions between the code and the machine, the application could function more efficiently and responsively.
+   Adopting a functional approach fosters the decoupling of code, paving the way for more modular and maintainable applications. Components aren't bound to a specific framework or library, making it easier to swap them in and out as needed. This flexibility ensures the longevity and scalability of your codebase.
 
-5. **Flexibility:** Freedom of choice is a cornerstone of the functional approach. As developers aren't bound to any specific library or framework, they can select the optimal tool for each task. If a new library proves superior for a particular function, switching is a breeze, with no need to worry about comprehensive application upheaval.
+3. **Control over Code:**
 
-**Counterpoints:**
+   By eschewing comprehensive frameworks, the functional approach grants developers full control over their code. This control is particularly beneficial in large or complex applications where the 'magic' of frameworks can obfuscate understanding and introduce unnecessary difficulties.
 
-1. **Learning Curve:** There's no denying the learning curve associated with the functional approach. While I would argue that a more functional approach is simpler and easier for all levels of developers to pick up your code, more junior developers may be unsure how to implement a new project in this style from scratch, while keeping things modular and well structured.
+4. **Performance:**
 
-Developers familiar with Express.js or similar frameworks may need to unlearn certain habits and acquire new ones.
+  Less reliance on hefty frameworks could potentially yield improved performance. With fewer lines of code to parse and fewer abstractions between the code and the machine, the application could function more efficiently and responsively.
 
-2. **Boilerplate Code:** Using a more 'raw' approach like `http` might require you to write more boilerplate code. While there's merit in 'repetition is fine', it can be seen as inefficient and potentially error-prone.
+5. **Flexibility:**
 
-3. **Community Support:** Larger frameworks often come with robust community support and extensive documentation, which can be invaluable for solving problems and learning best practices.
+   Freedom of choice is a cornerstone of the functional approach. As developers aren't bound to any specific library or framework, they can select the optimal tool for each task. If a new library proves superior for a particular function, switching is a breeze, with no need to worry about comprehensive application upheaval.
 
-4. **Security:** Frameworks often provide built-in mechanisms to deal with common security threats. When working without a framework, you need to implement these security measures yourself, which can be tricky if you're not an expert in the field.
+## Counterpoints:
+
+1. **Learning Curve:**
+
+   There's no denying the learning curve associated with the functional approach. While I would argue that a more functional approach is simpler and easier for all levels of developers to pick up your code, more junior developers may be unsure how to implement a new project in this style from scratch, while keeping things modular and well structured.
+
+   Developers familiar with Express.js or similar frameworks may need to unlearn certain habits and acquire new ones.
+
+2. **Boilerplate Code:**
+
+   Using a more 'raw' approach like `http` might require you to write more boilerplate code. While there's merit in 'repetition is fine', it can be seen as inefficient and potentially error-prone.
+
+3. **Community Support:**
+
+   Larger frameworks often come with robust community support and extensive documentation, which can be invaluable for solving problems and learning best practices.
+
+4. **Security:**
+
+   Frameworks often provide built-in mechanisms to deal with common security threats. When working without a framework, you need to implement these security measures yourself, which can be tricky if you're not an expert in the field.
