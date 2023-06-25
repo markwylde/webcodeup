@@ -107,7 +107,7 @@ But if we look back to my `getSessionFromRequest` example. We have abstracted th
 
 4. **Performance:**
 
-  Less reliance on hefty frameworks could potentially yield improved performance. With fewer lines of code to parse and fewer abstractions between the code and the machine, the application could function more efficiently and responsively.
+   Less reliance on hefty frameworks could potentially yield improved performance. With fewer lines of code to parse and fewer abstractions between the code and the machine, the application could function more efficiently and responsively.
 
 5. **Flexibility:**
 
