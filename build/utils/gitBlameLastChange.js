@@ -2,8 +2,9 @@ import { execSync } from 'child_process';
 import parseBlame from './parseBlame.js';
 
 function getLastBlame (output) {
-  const { commitData, lineData } = parseBlame(output);
-  return commitData[lineData[1].hash];
+  const { commitData } = parseBlame(output);
+  const lastKey = Object.keys(commitData).at(-1);
+  return commitData[lastKey];
 }
 
 function gitBlameLastChange (filePath) {
