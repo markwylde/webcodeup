@@ -24,14 +24,14 @@
   },
   "license": "AGPL-3.0",
   "devDependencies": {
-    "basictap": "^4.3.4",
+    "basictap": "^4.3.5",
     "date-fns": "^2.30.0",
-    "globby": "^13.1.4",
-    "highlight.js": "^11.8.0",
-    "marked": "^5.1.0",
+    "globby": "^13.2.2",
+    "highlight.js": "^11.9.0",
+    "marked": "^9.1.5",
     "servatron": "^2.4.3",
-    "statictron": "^3.0.4",
-    "upload-to-bunny": "^1.0.4",
-    "yaml": "^2.3.1"
+    "statictron": "^3.0.5",
+    "upload-to-bunny": "^1.0.5",
+    "yaml": "^2.3.4"
   }
 }
