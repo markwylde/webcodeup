@@ -26,6 +26,7 @@
   "devDependencies": {
     "basictap": "^4.3.5",
     "date-fns": "^2.30.0",
+    "dayjs": "^1.11.10",
     "globby": "^13.2.2",
     "highlight.js": "^11.9.0",
     "marked": "^9.1.5",

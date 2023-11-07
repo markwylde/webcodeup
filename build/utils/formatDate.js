@@ -1,14 +1,13 @@
-function formatDate (date) {
-  const isoString = date.toISOString();
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone.js';
+import utc from 'dayjs/plugin/utc.js';
 
-  const year = isoString.split('-')[0];
-  const month = isoString.split('-')[1];
-  const day = isoString.split('-')[2].slice(0, 2);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
-  const hour = isoString.split('T')[1].split(':')[0];
-  const minute = isoString.split('T')[1].split(':')[1];
-
-  const formattedDate = [year, month, day].join('/') + ' ' + [hour, minute].join(':');
+function formatDate(date) {
+  const ukDate = dayjs(date).tz('Europe/London');
+  const formattedDate = ukDate.format('YYYY/MM/DD HH:mm');
 
   return formattedDate;
 }
