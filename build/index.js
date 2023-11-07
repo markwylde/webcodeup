@@ -25,8 +25,8 @@ const renderer = {
 
     return `
       <h${level}>
-        <a name="${escapedText}" class="anchor" href="#${escapedText}">#</a>
         ${text}
+        <a name="${escapedText}" class="anchor" href="#${escapedText}">#</a>
       </h${level}>`;
   }
 };

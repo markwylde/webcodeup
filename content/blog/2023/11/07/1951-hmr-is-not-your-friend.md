@@ -5,19 +5,35 @@ title: HMR is not your friend
 A curse that seems to have plagued the frontend community for years now is Hot Module Replacement (HMR). The idea of making changes in your code and seeing them instantly reflected in your app without a page reload. Coming from a mindset that values simple, minimal frameworks (ideally none at all), and functional development, I never understood the appeal when I first heard of it years ago. And now, despite being forced to use build tools with this "feature" baked in for years, I feel it's not only unhelpful to me but actually fosters poor development practices and degrades the user experience.
 
 # Problems with HMR
-## Buggy Performance
+## 1. Buggy Performance
 Fact check: HMR doesn't always work as advertised. It's not always "hot" nor does it "replace" without creating issues itself. Weird behaviors cropping out of nowhere, reloads not working correctly, changes not reflecting in real-time - there's more than a fair share of HMR horror stories.
 
-## Additional Complexity
+## 2. Additional Complexity
 When you decide to use HMR, you invite additional layers of complexity into your code. Sprinkling module.hot.accept() throughout your code may not be rocket science, but it's another step in the process that opens room for mistakes.
 
-## App Persistence
-I believe our apps should persist their state across crashes and restarts. Think about it - wouldn't it be excellent if your app could pick right off where it left, if the user accidentally closes the tab, or accidentally hits a keyboard shortcut? With HMR, that's not always guaranteed.
+## 3. App Persistence
+No matter what happens: crashes, restarts, accidental tab closures—your app, I feel your app should bounce back like nothing ever happened. Users should feel like they're stepping back into a room they just left, not starting over from scratch. HMR might sound snazzy with its instant updates, but when it comes to persistence, it often drops the ball.
 
-## Speed Bumps
-A common complaint I hear from developers is page reloads can be slow. But shouldn't the solution to this involve speeding up and improving your app's performance, instead of hacking together some complex developer tools to hide the problem?
+### Why Persistence Matters
+Imagine working on a document online, and you lose your progress because the page refreshes. Frustrating, right? Now apply that to web apps. Users expect to return to their work uninterrupted, not start a treasure hunt for where they left off.
 
-## URL-State Synchronization
+### Build for the Real World
+Here's the truth: apps crash, connections die, and browsers close. Your app needs to handle these hiccups like a champ. That means saving state to local storage, syncing with a backend service, or encoding state in the URL. It's not just about convenience; it's about reliability.
+
+When we hide this experience during our development, we are less likely to get frustrated by it, and therefore less likely to fix it. Don't hide your frustrations. Fix them.
+
+## 4. Speed Bumps
+It's a common gripe in the dev community—slow page reloads can be a drag. But here's the thing: if your page takes an age to reload, that's not just a nuisance; it's a symptom. A symptom of deeper performance issues that no amount of hot-reloading magic is going to cure.
+
+### Treat the cause
+When developers lean on tools like HMR to sidestep slow reload times, they're putting a band-aid on a bullet wound. It's a temporary fix that doesn't address the underlying issues. And what's worse, it might hide problems that users will eventually face in production.
+
+Using HMR or similar tools as a crutch means you might not feel the urgency to tackle performance issues head-on. You might not notice the bloated script files, the sluggish API calls, or the heavy lifting done on the client-side that should be on a server.
+
+So, what's the game plan? The aim should be to make your app so zippy that you don't need to rely on HMR to avoid the pain of reloading.
+
+
+## 5. URL-State Synchronization
 What if a page could refresh at any stage of the app journey and take us back to the exact same state? For instance, if you have a tabbed panel, that selected tab should be in the URL, and refreshing your page would return you to that same tab. With HMR, that's another missed opportunity.
 
 If you have half completed a form, and refresh the page, I think it's nice to at least ask the user if they'd like to continue from where they left off. Sometimes, the things that frustrate you during development, are also the things that frustrate your users.
