@@ -4,7 +4,7 @@ title: Stop Mocking Internal Logic
 
 Traditionally, when testing web applications, we often resort to mocking internal objects and functions like the application's store, `window.fetch`, and other dependencies. While convenient, this approach can lead to brittle tests that do not reflect how the application interacts with the outside world.
 
-In this article, we propose an alternative: stop mocking internals and start mocking externals. Instead of focusing on the inner workings of your application, set up a small test server to simulate your application's real-world interactions.
+In this article, I propose an alternative: stop mocking internals and start mocking externals. Instead of focusing on the inner workings of your application, set up a small test server to simulate your application's real-world interactions.
 
 ## What is mocking internal logic?
 
