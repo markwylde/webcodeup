@@ -1,31 +1,20 @@
 import { execSync } from 'child_process';
-import parseBlame from './parseBlame.js';
 
-function getLastBlame (output) {
-  const { commitData } = parseBlame(output);
-  const lastKey = Object.keys(commitData).at(-1);
-  return commitData[lastKey];
-}
-
-function gitBlameLastChange (filePath) {
+function gitLogLastChange(filePath) {
   let output;
   try {
-    output = execSync(`git blame --date=iso -p "${filePath}"`, { encoding: 'utf8' });
+    output = execSync(`git log -1 --format="%an|%cd" -- "${filePath}"`, { encoding: 'utf8' });
   } catch (error) {
-    console.log(`Could not git blame ${filePath}`);
+    console.error(`Could not retrieve the last commit information for ${filePath}`);
     return null;
   }
 
-  const result = getLastBlame(output);
+  const [author, date] = output.trim().split('|');
 
-  if (!result) {
-    return null;
+  return {
+    author,
+    authorTime: new Date(date)
   }
-
-  result.authorTime = new Date(result.authorTime * 1000);
-  result.committerTime = new Date(result.committerTime * 1000);
-
-  return result;
 }
 
-export default gitBlameLastChange;
+export default gitLogLastChange;
