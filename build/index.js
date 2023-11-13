@@ -5,7 +5,8 @@ import { format } from 'date-fns';
 import chokidar from 'chokidar';
 import debounce from 'debounce';
 import { globby } from 'globby';
-import { marked } from 'marked';
+import { Marked } from 'marked';
+import {markedHighlight} from "marked-highlight";
 import hljs from 'highlight.js';
 import gitBlameLastChange from './utils/gitBlameLastChange.js';
 import gitBlameFirstChange from './utils/gitBlameFirstChange.js';
@@ -13,11 +14,15 @@ import formatDate from './utils/formatDate.js';
 import extractMetadataFromMarkdown from './utils/extractMetadataFromMarkdown.js';
 import clearCommentsFromMarkdown from './utils/clearCommentsFromMarkdown.js';
 
-marked.setOptions({
-  highlight: function (code, lang) {
-    return hljs.highlight(code, { language: lang }).value.replace(/\n/g, '<br />');
-  }
-});
+const marked = new Marked(
+  markedHighlight({
+    langPrefix: 'hljs language-',
+    highlight(code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      return hljs.highlight(code, { language }).value.replace(/\n/g, '<br />');
+    }
+  })
+);
 
 const renderer = {
   heading(text, level) {
@@ -30,8 +35,7 @@ const renderer = {
       </h${level}>`;
   }
 };
-
-marked.use({ renderer });
+marked.use(renderer);
 
 async function build () {
   const blogFiles = await globby('./content/blog/**/*.md');

@@ -2,8 +2,6 @@
 title: Stop Mocking Internal Logic
 ---
 
-Modern software development practices underscore testing as a cornerstone of the development process. Consequently, there's been a shift from purely unit tests toward more integrated testing methods. The React Testing Library (RTL), which focuses on application behavior rather than implementation, has emerged as a popular tool in line with this trend.
-
 Traditionally, when testing web applications, we often resort to mocking internal objects and functions like the application's store, `window.fetch`, and other dependencies. While convenient, this approach can lead to brittle tests that do not reflect how the application interacts with the outside world.
 
 In this article, we propose an alternative: stop mocking internals and start mocking externals. Instead of focusing on the inner workings of your application, set up a small test server to simulate your application's real-world interactions.
